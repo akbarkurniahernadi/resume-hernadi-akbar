@@ -1,0 +1,25 @@
+{
+  "name": "akbar-portfolio",
+  "version": "1.0.0",
+  "description": "Modern portfolio website for Akbar Kurnia Hernadi - Backend Engineer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx http-server . -p 3000 -o -c-1",
+    "build": "echo 'Build completed - ready for deployment'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "portfolio",
+    "resume",
+    "backend-engineer",
+    "java",
+    "spring-boot",
+    "website"
+  ],
+  "author": "Akbar Kurnia Hernadi",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akbar Kurnia Hernadi - Backend Engineer</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Multilingual Greeting - WHITE COLOR */
+        #multilingual-greeting {
+            color: #ffffff !important;
+            font-size: 1.5rem;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .greeting-fade-out {
+            opacity: 0 !important;
+            transform: translateY(-20px) scale(0.9) !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .greeting-fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* Enhanced Hero Layout */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 5rem;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero-text {
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 2rem;
+        }
+
+        .hero-title {
+            margin-bottom: 2rem;
+        }
+
+        .hero-title .name {
+            display: block;
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title .role {
+            display: block;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 0.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.2rem 2.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6366f1;
+        }
+
+        /* Stats Grid */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: fadeInRight 1s ease-out 0.3s both;
+    transform: translateY(100vh);  /* geser ke bawah setinggi layar */
+    transition: all var(--transition-normal);
+}
+
+        .profile-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+        }
+
+        .profile-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            padding: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .profile-circle:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--bg-secondary);
+        }
+
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            padding: 0.75rem 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            animation: float 6s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 15%;
+            right: -20%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            bottom: 25%;
+            left: -25%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 60%;
+            right: -15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero-image {
+                transform: translateY(0);
+                order: -1;
+            }
+
+            .hero-text {
+                padding-top: 0;
+            }
+
+            .profile-container {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-content {
+                gap: 3rem;
+            }
+
+            .hero-image {
+                transform: translateY(0);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass-effect">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Akbar Kurnia Hernadi</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span id="multilingual-greeting">Hello, I'm</span>
+                        <span class="name">Akbar Kurnia Hernadi</span>
+                        <span class="role">Backend Engineer</span>
+                    </h1>
+                    <p class="hero-description">
+                        Passionate backend engineer with <strong>3+ years</strong> of expertise in 
+                        <strong>Java Spring Boot</strong>, crafting scalable solutions for 
+                        banking & fintech industries.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn btn-primary glass-effect">
+                            <i class="fas fa-envelope"></i>
+                            <span>Get In Touch</span>
+                        </a>
+                        <a href="experience.html" class="btn btn-secondary glass-effect">
+                            <i class="fas fa-download"></i>
+                            <span>View Resume</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item glass-effect">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item glass-effect">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item glass-effect">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Industries</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <div class="profile-circle">
+                            <img src="images/abay.png" alt="Akbar Kurnia Hernadi" class="profile-image">
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-element glass-effect">
+                                <i class="fab fa-java"></i> Java Expert
+                            </div>
+                            <div class="floating-element glass-effect">
+                                <i class="fas fa-server"></i> Spring Boot
+                            </div>
+                            <div class="floating-element glass-effect">
+                                <i class="fas fa-database"></i> Architecture Design
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Role -->
+    <section class="featured-experience">
+        <div class="container">
+            <h2 class="section-title">Current Role</h2>
+            <div class="experience-card glass-effect">
+                <div class="company-logo">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="experience-content">
+                    <h3>Backend Developer</h3>
+                    <h4>Bank Negara Indonesia (BNI)</h4>
+                    <p class="duration">Jun 2024 - Present</p>
+                    <p class="description">
+                        Leading the development of core banking and lending features using Java & Spring Boot.
+                        Achieved 25% improvement in delivery efficiency through microservices architecture
+                        and enhanced API performance with reactive programming patterns.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Apache Kafka</span>
+                        <span class="tech-tag">Kibana</span>
+                        <span class="tech-tag">OpenShift</span>
+                        <span class="tech-tag">Oracle Database</span>
+                        <span class="tech-tag">Microservices</span>
+                        <span class="tech-tag">REST APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Multilingual Greeting Animation - WHITE COLOR
+        function initMultilingualGreeting() {
+            const greetingElement = document.getElementById('multilingual-greeting');
+            if (!greetingElement) {
+                console.log('Multilingual greeting element not found');
+                return;
+            }
+            
+            console.log('Initializing multilingual greeting animation');
+            
+            const greetings = [
+                'Halo, perkenalkan aku...', // Indonesian
+                'Hi, I\'m...', // English
+                'Hola, soy...', // Spanish
+                'Salut, je suis...', // French
+                'こんにちは、私は...', // Japanese
+                '안녕하세요, 저는...', // Korean
+                'Hallo, ik ben...', // Dutch
+                'Olá, eu sou...', // Portuguese
+                'Привет, я...', // Russian
+                '你好，我是...', // Chinese
+                'مرحباً، أنا...' // Arabic
+            ];
+            
+            let currentIndex = 0;
+            
+            function changeGreeting() {
+                console.log('Changing greeting to:', greetings[currentIndex]);
+                greetingElement.classList.add('greeting-fade-out');
+                
+                setTimeout(() => {
+                    greetingElement.textContent = greetings[currentIndex];
+                    greetingElement.classList.remove('greeting-fade-out');
+                    greetingElement.classList.add('greeting-fade-in');
+                    
+                    setTimeout(() => {
+                        greetingElement.classList.remove('greeting-fade-in');
+                    }, 500);
+                    
+                    currentIndex = (currentIndex + 1) % greetings.length;
+                }, 500);
+            }
+            
+            // Start the animation after 2 seconds
+            setTimeout(() => {
+                setInterval(changeGreeting, 3000);
+            }, 2000);
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize multilingual greeting
+            initMultilingualGreeting();
+            
+            // Add smooth scrolling and animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.experience-card, .stat-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
