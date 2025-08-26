@@ -113,7 +113,7 @@ portfolio-website/
 
 ## 📞 Contact Information
 
-- **Email**: akbar.kurnia.hernadi@example.com
+- **Email**: akhernadi@gmail.com
 - **Phone**: +62 821 3869 0989
 - **LinkedIn**: [linkedin.com/in/akhernadi](https://www.linkedin.com/in/akhernadi/)
 - **GitHub**: [github.com/akbarkurniahernadi](https://github.com/akbarkurniahernadi)
